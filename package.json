@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "postinstall": "node dist/cli/index.js on-post-install"
+    "postinstall": "node dist/cli/index.js on-post-install",
+    "prepublishOnly": "tsc"
   },
   "dependencies": {
     "find-up": "^4.1.0",
