@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "gitflow.branch.master": {
+      "type": "string",
+      "description": "The name of the branch treated as _master_"
+    },
+    "gitflow.branch.develop": {
+      "type": "string",
+      "description": "The name of the branch treated as _develop_"
+    },
+    "gitflow.prefix.feature": {
+      "type": "string",
+      "pattern": "^\\w+/$",
+      "description": "The prefix for _feature_ branches"
+    },
+    "gitflow.prefix.release": {
+      "type": "string",
+      "pattern": "^\\w+/$",
+      "description": "The prefix for _release_ branches"
+    },
+    "gitflow.prefix.hotfix": {
+      "type": "string",
+      "pattern": "^\\w+/$",
+      "description": "The prefix for _hotfix_ branches"
+    },
+    "gitflow.prefix.support": {
+      "type": "string",
+      "pattern": "^\\w+/$",
+      "description": "The prefix for _support_ branches"
+    },
+    "gitflow.prefix.versiontag": {
+      "type": "string",
+      "description": "he prefix for _version tags_"
+    }
+  }
+}
