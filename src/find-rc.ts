@@ -7,7 +7,8 @@ import { promisify } from "util";
 const RC_FILE = ".gitflow-rc.json";
 
 export async function findConfigurePath() {
-  const cwd = path.dirname((await findUp("package.json")) ?? process.cwd());
+  const matched = await findUp("package.json");
+  const cwd = _.isNil(matched) ? process.cwd() : path.dirname(matched);
 
   const paths = await promisify(glob)(`*/${RC_FILE}`, { cwd });
   return _.first(paths) || path.join(cwd || "", RC_FILE);
