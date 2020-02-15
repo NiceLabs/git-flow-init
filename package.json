@@ -1,15 +1,18 @@
 {
   "name": "@nice-labs/git-flow-init",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "git-flow automate init on npm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NiceLabs/git-flow-init"
+  },
   "license": "MIT",
   "author": "Septs",
-  "main": "index.js",
-  "bin": "node dist/cli/index.js",
+  "bin": "./dist/cli/index.js",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "postinstall": "node dist/cli/index.js on-post-install",
+    "postinstall": "git-flow-init on-post-install",
     "prepublishOnly": "tsc"
   },
   "dependencies": {

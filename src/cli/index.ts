@@ -1,10 +1,13 @@
+#!/usr/bin/env node
 import _ from "lodash";
 import yargs from "yargs";
-import { findConfigurePath } from "../find-rc";
-import { backup, restore, Options } from "../git-flow-init";
 import { promises as fs } from "fs";
 import validate from "schema-utils";
+
+import { findConfigurePath } from "../find-rc";
+import { backup, restore, Options } from "../git-flow-init";
 import schema from "../../schema.json";
+import { exists } from "./fs";
 
 const argv = yargs
   .command("restore", "Restore git-flow init configuration")
@@ -15,20 +18,27 @@ async function main(command: string) {
   const path = await findConfigurePath();
   switch (command) {
     case "on-post-install":
-      onRestore(path).catch(console.log);
+      await onPostInstall(path);
+      break;
     case "restore":
-      onRestore(path);
+      await onRestore(path);
       break;
     case "backup":
-      onBackup(path);
+      await onBackup(path);
       break;
   }
 }
 
+async function onPostInstall(path: string) {
+  if (await exists(path)) {
+    onRestore(path);
+  } else {
+    console.error(".gitflow-rc.json not found");
+  }
+}
+
 async function onRestore(path: string) {
-  const configure: Partial<Options> = JSON.parse(
-    await fs.readFile(path, "utf-8")
-  );
+  const configure: Options = JSON.parse(await fs.readFile(path, "utf-8"));
   if (_.isNil(configure)) {
     throw new Error(".gitflow-rc.json not found");
   }

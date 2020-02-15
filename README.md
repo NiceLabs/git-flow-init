@@ -1,4 +1,4 @@
-# git-flow-init
+# @nice-labs/git-flow-init
 
 git-flow automate init on npm
 
@@ -6,13 +6,14 @@ git-flow automate init on npm
 
 ```bash
 # on npm install
+npm set @nice-labs:registry https://npm.septs.me
 npm install
 
 # generate git-flow config backup file to project root directory
-npx git-flow-init backup
+npx @nice-labs/git-flow-init backup
 
 # restore git-flow config to the project
-npx git-flow-init restore
+npx @nice-labs/git-flow-init restore
 ```
 
 ## `.gitflow-rc.json` Discovery range
