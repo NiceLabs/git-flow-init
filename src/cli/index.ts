@@ -39,11 +39,10 @@ async function onPostInstall(path: string) {
 
 async function onRestore(path: string) {
   const configure: Options = JSON.parse(await fs.readFile(path, "utf-8"));
-  if (_.isNil(configure)) {
-    throw new Error(".gitflow-rc.json not found");
-  }
+
   validate(schema, configure);
   await restore(configure);
+
   console.table(configure);
   console.log("git-flow init # restore done");
 }
@@ -53,6 +52,7 @@ async function onBackup(path: string) {
 
   validate(schema, configure);
   fs.writeFile(path, JSON.stringify(configure, null, 2), { encoding: "utf-8" });
+
   console.table(configure);
   console.log("git-flow init # backup done");
 }

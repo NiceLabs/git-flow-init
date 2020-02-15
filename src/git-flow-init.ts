@@ -35,5 +35,5 @@ export async function backup(): Promise<Partial<Options>> {
   for (const name of names) {
     options[name] = await getField(name);
   }
-  return options;
+  return _.defaults(options, defaultOptions);
 }
