@@ -12,19 +12,20 @@ import { exists } from "./fs";
 const argv = yargs
   .command("restore", "Restore git-flow init configuration")
   .command("backup", "Backup git-flow init configuration")
-  .command("on-post-install", "Handle npm postinstall event").argv;
+  .command("on-post-install", "Handle npm postinstall event")
+  .strict().argv;
 
 async function main(command: string) {
   const path = await findConfigurePath();
   switch (command) {
-    case "on-post-install":
-      await onPostInstall(path);
-      break;
     case "restore":
-      await onRestore(path);
-      break;
+      return onRestore(path);
     case "backup":
-      await onBackup(path);
+      return onBackup(path);
+    case "on-post-install":
+      return onPostInstall(path);
+    default:
+      yargs.showHelp();
       break;
   }
 }

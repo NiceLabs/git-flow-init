@@ -1,6 +1,6 @@
 {
   "name": "@nice-labs/git-flow-init",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "git-flow automate init on npm",
   "repository": {
     "type": "git",
