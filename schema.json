@@ -34,5 +34,14 @@
       "type": "string",
       "description": "he prefix for _version tags_"
     }
-  }
+  },
+  "required": [
+    "gitflow.branch.master",
+    "gitflow.branch.develop",
+    "gitflow.prefix.feature",
+    "gitflow.prefix.release",
+    "gitflow.prefix.hotfix",
+    "gitflow.prefix.support",
+    "gitflow.prefix.versiontag"
+  ]
 }
