@@ -7,7 +7,7 @@ git-flow automate init on npm
 ```bash
 # on npm install
 npm set @nice-labs:registry https://npm.septs.me
-npm install
+npm install @nice-labs/git-flow-init
 
 # generate git-flow config backup file to project root directory
 npx @nice-labs/git-flow-init backup
