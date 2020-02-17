@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 
 const RC_FILE = ".gitflow-rc.json";
 
-export async function findConfigurePath() {
+export async function findConfigureFilePath() {
   const cwd = await getWorkingDirectory();
 
   const files = (await fs.readdir(cwd, { withFileTypes: true }))
