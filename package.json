@@ -28,5 +28,8 @@
     "@types/yargs": "^15.0.3",
     "rimraf": "^3.0.2",
     "typescript": "^3.7.5"
+  },
+  "engines": {
+    "node": ">11"
   }
 }

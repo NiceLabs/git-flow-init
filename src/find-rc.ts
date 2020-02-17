@@ -1,4 +1,3 @@
-import _ from "lodash";
 import path from "path";
 import findUp from "find-up";
 import { promises as fs } from "fs";
@@ -6,20 +5,31 @@ import { promises as fs } from "fs";
 const RC_FILE = ".gitflow-rc.json";
 
 export async function findConfigurePath() {
-  const matched = await findUp("package.json");
-  const cwd = _.isNil(matched) ? process.cwd() : path.dirname(matched);
+  const cwd = await getWorkingDirectory();
 
-  for (const name of await fs.readdir(cwd)) {
-    const subpath = path.join(cwd, name);
-    if (await isFile(subpath, RC_FILE)) {
-      return path.join(subpath, RC_FILE);
+  const files = (await fs.readdir(cwd, { withFileTypes: true }))
+    .filter(dirent => dirent.isDirectory())
+    .map(({ name }) => path.join(cwd, name, RC_FILE));
+  for (const file of files) {
+    if (await isFile(file)) {
+      return file;
     }
   }
   return path.join(cwd, RC_FILE);
 }
 
-const isFile = async (...paths: string[]) =>
-  fs.stat(path.join(...paths)).then(
+const getWorkingDirectory = async () => {
+  const cwd = process.env["INIT_CWD"] ?? process.cwd();
+  const matched = await findUp("package.json", { cwd });
+  if (matched) {
+    return path.dirname(matched);
+  } else {
+    return cwd;
+  }
+};
+
+const isFile = async (path: string) =>
+  fs.stat(path).then(
     stat => stat.isFile(),
     () => false
   );
