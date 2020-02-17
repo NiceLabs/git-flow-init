@@ -1,11 +1,12 @@
 {
   "name": "@nice-labs/git-flow-init",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "git-flow automate init on npm",
   "repository": {
     "type": "git",
     "url": "https://github.com/NiceLabs/git-flow-init"
   },
+  "homepage": "https://github.com/NiceLabs/git-flow-init",
   "license": "MIT",
   "author": "Septs",
   "bin": "./dist/cli/index.js",

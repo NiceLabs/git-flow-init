@@ -1,12 +1,14 @@
 # @nice-labs/git-flow-init
 
+![node version](https://img.shields.io/node/v/@nice-labs/git-flow-init)
+[![npm module](https://img.shields.io/npm/v/@nice-labs/git-flow-init)](https://www.npmjs.com/package/@nice-labs/git-flow-init)
+
 git-flow automate init on npm
 
 ## Usage
 
 ```bash
 # on npm install
-npm set @nice-labs:registry https://npm.septs.me
 npm install @nice-labs/git-flow-init
 
 # generate git-flow config backup file to project root directory
