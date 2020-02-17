@@ -23,7 +23,7 @@ const defaultOptions: Options = {
 
 export async function restore(options: Partial<Options>) {
   const values = _.defaults(options, defaultOptions);
-  const names = _.keys(defaultOptions) as [keyof Options];
+  const names = Object.keys(defaultOptions) as [keyof Options];
   for (const name of names) {
     await setField(name, values[name]);
   }
@@ -31,7 +31,7 @@ export async function restore(options: Partial<Options>) {
 
 export async function backup(): Promise<Partial<Options>> {
   const options: Partial<Options> = {};
-  const names = _.keys(defaultOptions) as [keyof Options];
+  const names = Object.keys(defaultOptions) as [keyof Options];
   for (const name of names) {
     options[name] = await getField(name);
   }

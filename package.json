@@ -1,6 +1,6 @@
 {
   "name": "@nice-labs/git-flow-init",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "git-flow automate init on npm",
   "repository": {
     "type": "git",
@@ -10,24 +10,23 @@
   "author": "Septs",
   "bin": "./dist/cli/index.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "postinstall": "git-flow-init on-post-install",
-    "prepublishOnly": "tsc"
+    "build": "rimraf dist && tsc",
+    "build:watch": "rimraf dist && tsc --watch",
+    "postinstall": "node ./dist/cli/index.js on-post-install",
+    "prepublishOnly": "rimraf dist && tsc"
   },
   "dependencies": {
     "find-up": "^4.1.0",
-    "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "schema-utils": "^2.6.4",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.1",
     "@types/json-schema": "^7.0.4",
     "@types/lodash": "^4.14.149",
-    "@types/node": "^13.7.0",
+    "@types/node": "^13.7.1",
     "@types/yargs": "^15.0.3",
+    "rimraf": "^3.0.2",
     "typescript": "^3.7.5"
   }
 }
