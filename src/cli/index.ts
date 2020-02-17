@@ -17,7 +17,6 @@ const argv = yargs
 
 async function main(command: string) {
   const path = await findConfigurePath();
-  console.log(path);
   switch (command) {
     case "restore":
       return onRestore(path);
