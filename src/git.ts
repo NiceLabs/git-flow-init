@@ -24,9 +24,8 @@ const defaultOptions: Options = {
 };
 
 async function getTopLevel(cwd?: string) {
-  const { stdout } = await execFile("git", ["rev-parse", "--show-toplevel"], {
-    cwd
-  });
+  const args = ["rev-parse", "--show-toplevel"];
+  const { stdout } = await execFile("git", args, { cwd });
   return stdout.trim();
 }
 
@@ -41,25 +40,17 @@ export class Git {
     return new Git(await getTopLevel(cwd));
   }
 
+  private async git(...args: string[]) {
+    return execFile("git", args, { cwd: this.cwd });
+  }
+
   protected async getField(name: string) {
-    const { stdout, stderr } = await execFile(
-      "git",
-      ["config", "--get", name],
-      { cwd: this.cwd }
-    );
-    if (stderr) {
-      return undefined;
-    }
+    const { stdout } = await this.git("config", "--get", name);
     return stdout.trim();
   }
 
   protected async setField(name: string, value: string) {
-    const { stderr } = await execFile("git", ["config", name, value], {
-      cwd: this.cwd
-    });
-    if (stderr) {
-      throw new Error(stderr.trim());
-    }
+    await this.git("config", name, value);
   }
 
   public async restoreFlow(options: Options) {
