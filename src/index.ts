@@ -4,9 +4,9 @@ import path from "path";
 import { promises as fs } from "fs";
 import validate from "schema-utils";
 
-import { findConfigureFilePath } from "../find-rc";
-import { Git } from "../git";
-import schema from "../../schema.json";
+import { findConfigureFilePath } from "./find-rc";
+import { Git } from "./git";
+import schema from "../schema.json";
 import { exists } from "./fs";
 
 const argv = yargs
