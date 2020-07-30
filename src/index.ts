@@ -45,7 +45,6 @@ async function onRestore(this: Git, filePath: string) {
   validate(schema as any, configure);
   await this.restoreFlow(configure);
 
-  console.table(configure);
   console.log(`read file from ${filePath}`);
   console.log("git-flow init # restore done");
 }
@@ -56,7 +55,6 @@ async function onBackup(this: Git, filePath: string) {
   const encoded = JSON.stringify(configure, null, 2);
   fs.writeFile(filePath, encoded, "utf-8");
 
-  console.table(configure);
   console.log(`wrote file to ${filePath}`);
   console.log("git-flow init # backup done");
 }
