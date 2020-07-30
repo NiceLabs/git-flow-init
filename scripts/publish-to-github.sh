@@ -5,6 +5,8 @@ set -x
 
 cd dist || exit 1
 
+npm config list
+
 jq '.name = "@nicelabs/git-flow-init"' package.json > package-modified.json
 mv package-modified.json package.json
 
