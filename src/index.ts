@@ -6,7 +6,7 @@ import validate from "schema-utils";
 
 import { findConfigureFilePath } from "./find-rc";
 import { Git } from "./git";
-import schema from "../schema.json";
+import schema from "./schema.json";
 import { exists } from "./fs";
 
 const argv = yargs
@@ -42,7 +42,7 @@ async function onPostInstall(this: Git, filePath: string) {
 async function onRestore(this: Git, filePath: string) {
   const configure = JSON.parse(await fs.readFile(filePath, "utf-8"));
 
-  validate(schema, configure);
+  validate(schema as any, configure);
   await this.restoreFlow(configure);
 
   console.table(configure);
