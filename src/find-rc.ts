@@ -8,7 +8,7 @@ export async function findConfigureFilePath() {
   const cwd = await getWorkingDirectory();
 
   const files = (await fs.readdir(cwd, { withFileTypes: true }))
-    .filter(dirent => dirent.isDirectory())
+    .filter((dirent) => dirent.isDirectory())
     .map(({ name }) => path.join(cwd, name, RC_FILE));
   for (const file of files) {
     if (await isFile(file)) {
@@ -21,15 +21,11 @@ export async function findConfigureFilePath() {
 const getWorkingDirectory = async () => {
   const cwd = process.env["INIT_CWD"] ?? process.cwd();
   const matched = await findUp("package.json", { cwd });
-  if (matched) {
-    return path.dirname(matched);
-  } else {
-    return cwd;
-  }
+  return matched ? path.dirname(matched) : cwd;
 };
 
 const isFile = async (path: string) =>
   fs.stat(path).then(
-    stat => stat.isFile(),
+    (stat) => stat.isFile(),
     () => false
   );

@@ -1,0 +1,6 @@
+{
+  "bin": "./cli/index.js",
+  "scripts": {
+    "postinstall": "node ./cli/index.js on-post-install"
+  }
+}

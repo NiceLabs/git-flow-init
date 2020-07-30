@@ -20,7 +20,7 @@ const defaultOptions: Options = {
   "gitflow.prefix.support": "support/",
   "gitflow.prefix.release": "release/",
   "gitflow.prefix.hotfix": "hotfix/",
-  "gitflow.prefix.versiontag": ""
+  "gitflow.prefix.versiontag": "",
 };
 
 async function getTopLevel(cwd?: string) {
@@ -50,11 +50,16 @@ export class Git {
   }
 
   protected async setField(name: string, value: string) {
-    await this.git("config", name, value);
+    return this.git("config", name, value);
+  }
+
+  protected async pull(branchName: string) {
+    return this.git("pull", "origin", branchName);
   }
 
   public async restoreFlow(options: Options) {
     const names = Object.keys(defaultOptions) as [keyof Options];
+    await this.pull(options["gitflow.branch.master"]);
     for (const name of names) {
       await this.setField(name, options[name]);
     }

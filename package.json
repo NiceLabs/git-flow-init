@@ -2,33 +2,27 @@
   "name": "@nice-labs/git-flow-init",
   "version": "1.0.1",
   "description": "git-flow automate init on npm",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/NiceLabs/git-flow-init"
-  },
-  "homepage": "https://github.com/NiceLabs/git-flow-init",
+  "repository": "https://github.com/NiceLabs/git-flow-init",
   "license": "MIT",
   "author": "Septs",
-  "bin": "./dist/cli/index.js",
+  "bin": "",
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "build:watch": "rimraf dist && tsc --watch",
-    "postinstall": "node ./dist/cli/index.js on-post-install",
-    "prepublishOnly": "rimraf dist && tsc"
+    "start": "./scripts/build.sh",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "find-up": "^4.1.0",
-    "schema-utils": "^2.6.4",
-    "yargs": "^15.1.0"
+    "schema-utils": "^2.7.0",
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
-    "@types/json-schema": "^7.0.4",
-    "@types/node": "^13.7.1",
-    "@types/yargs": "^15.0.3",
+    "@types/json-schema": "^7.0.5",
+    "@types/node": "^14.0.27",
+    "@types/yargs": "^15.0.5",
     "rimraf": "^3.0.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   },
   "engines": {
-    "node": ">11"
+    "node": ">= 11"
   }
 }
