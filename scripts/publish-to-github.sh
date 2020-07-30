@@ -3,9 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 set -x
 
+cp .npmrc dist/.npmrc
 cd dist || exit 1
-
-npm config list
 
 jq '.name = "@nicelabs/git-flow-init"' package.json > package-modified.json
 mv package-modified.json package.json
