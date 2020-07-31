@@ -53,13 +53,8 @@ export class Git {
     return this.git("config", name, value);
   }
 
-  protected async pull(branchName: string) {
-    return this.git("pull", "origin", branchName);
-  }
-
   public async restoreFlow(options: Options) {
     const names = Object.keys(defaultOptions) as [keyof Options];
-    await this.pull(options["gitflow.branch.master"]);
     for (const name of names) {
       await this.setField(name, options[name]);
     }
