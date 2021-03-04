@@ -5,7 +5,7 @@
 
 git-flow automate init on npm
 
-## Usage
+## FUCK Usage
 
 ```bash
 # on npm install
